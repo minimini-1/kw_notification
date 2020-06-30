@@ -14,11 +14,20 @@ modified_date_list = []
 new_register_index = []
 new_modified_index = []
 
-titles = soup.select('div.board-text > a')
-links = soup.select('div.board-text > a')
+#titles = soup.select('div.board-text > a')
+#links = soup.select('div.board-text > a')
 register_dates = soup.select('p.info')
 modified_dates = soup.select('p.info')
+divs = soup.select('div.board-text > a')
 
+for div in divs:
+    i = 0
+    title = ''.join(div.text.split())
+    title_list.append(title)
+    link_list.append(div.get('href'))
+    print(title_list[i] + link_list[i])
+    i += 1
+'''   
 for title in titles:
     title = title.text
     title = ''.join(title.split())
@@ -26,6 +35,7 @@ for title in titles:
 for link in links:
     link = link.get('href')
     link_list.append(link)
+'''  
 for register_date in register_dates:
     register_date_list.append(register_date.text.split()[4])
 for modified_date in modified_dates:
@@ -46,9 +56,9 @@ new_title = []
 print("신규등록")
 for i in new_register_index:
     new_title.append(title_list[i])
-    print(title_list[i])
+    #print(title_list[i])
 print("신규수정")
 for i in new_modified_index:
     if title_list[i] in new_title:
         continue
-    print(title_list[i])
+    #print(title_list[i])
