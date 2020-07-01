@@ -14,28 +14,15 @@ modified_date_list = []
 new_register_index = []
 new_modified_index = []
 
-#titles = soup.select('div.board-text > a')
-#links = soup.select('div.board-text > a')
 register_dates = soup.select('p.info')
 modified_dates = soup.select('p.info')
 divs = soup.select('div.board-text > a')
 
-for div in divs:
-    i = 0
+for div in divs:            #제목과 링크를 얻기 위한 반복문
     title = ''.join(div.text.split())
-    title_list.append(title)
+    title_list.append(title.replace("신규게시글", '').replace("Attachment", ''))
     link_list.append(div.get('href'))
-    print(title_list[i] + link_list[i])
-    i += 1
-'''   
-for title in titles:
-    title = title.text
-    title = ''.join(title.split())
-    title_list.append(title)
-for link in links:
-    link = link.get('href')
-    link_list.append(link)
-'''  
+
 for register_date in register_dates:
     register_date_list.append(register_date.text.split()[4])
 for modified_date in modified_dates:
@@ -53,12 +40,12 @@ for check in modified_date_list:
     index += 1
 
 new_title = []
-print("신규등록")
-for i in new_register_index:
+register_title = []
+
+for i in new_register_index:            #금일 새로 등록된 제목 리스트를 만드는 반복문
     new_title.append(title_list[i])
-    #print(title_list[i])
-print("신규수정")
 for i in new_modified_index:
-    if title_list[i] in new_title:
+    if title_list[i] in new_title:          #금일 수정된 제목 리스트를 만드는 반복문
         continue
-    #print(title_list[i])
+    register_title.append(title_list[i])
+today_title = new_title + register_title    #금일 새롭게 업데이트 된 제목들의 리스트(이거 가지고 비교하면 될거같은 생각)
