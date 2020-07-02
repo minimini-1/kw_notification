@@ -9,8 +9,8 @@ soup = BeautifulSoup(html.text, 'html.parser')
 title_list = []
 link_list = []
 
-titles = soup.select('div.board-text > a')
-links = soup.select('div.board-text > a')
+titles, links = soup.select('div.board-text > a')
+#links = soup.select('div.board-text > a')
 
 
 
@@ -23,7 +23,7 @@ for link in links:
     link = link.get('href')
     link_list.append(link)
     
-for i in range(10):
-    print(title_list[i].replace("신규게시글", "").replace("Attachment",""))
+for i in range(1):
+    print(title_list[0].replace("신규게시글", "").replace("Attachment",""))
     print("https://www.kw.ac.kr" + link_list[i])
     i = i+1

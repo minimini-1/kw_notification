@@ -21,12 +21,43 @@ modified_dates = soup.select('p.info')
 divs = soup.select('div.board-text > a')
 
 for div in divs:
-    i = 0
     title = ''.join(div.text.split())
     title_list.append(title)
     link_list.append(div.get('href'))
-    print(title_list[i] + link_list[i])
+    
+tit = []
+new_title = []
+tit_sa = []
+tit_re = []
+tit_sa_modi = []
+
+for i in range(5):
+    i = 0
+    tit.append(title_list[i])
+    tit_sa.append(title_list[i])
     i += 1
+for modified_date in modified_dates:
+    modified_date_list.append(modified_date.text.split()[7])
+print(type(modified_date.text.split()[7]))
+s = 0                  
+for i in tit: 
+    if s == 3:
+        tit_sa[s] = '가가가가가가'
+    if tit_sa[s] not in tit:
+        new_title.append(tit_sa[s])
+    else:
+        j = 0
+        for i in title_list:
+            if i in tit_sa[s] and i in tit[s]:
+                tit_sa_modi.append(i.text.split()[7]) #수정된 날짜
+                tit_re.append(i.text.split()[4]) #등록된 날짜
+                if tit_sa_modi != tit_re:
+                    new_title.append(tit_sa)
+            j += 1        
+    s = s + 1
+    
+print(new_title)
+
 '''   
 for title in titles:
     title = title.text
@@ -35,7 +66,7 @@ for title in titles:
 for link in links:
     link = link.get('href')
     link_list.append(link)
-'''  
+  
 for register_date in register_dates:
     register_date_list.append(register_date.text.split()[4])
 for modified_date in modified_dates:
@@ -62,3 +93,4 @@ for i in new_modified_index:
     if title_list[i] in new_title:
         continue
     #print(title_list[i])
+'''
