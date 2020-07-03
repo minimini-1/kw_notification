@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import datetime
+
 url = 'https://www.kw.ac.kr/ko/life/notice.jsp'
 header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'}
 req = requests.get(url, headers=header)
@@ -13,7 +13,7 @@ link_list = []
 register_date_list = []
 modified_date_list = []
 
-while true:
+while True:
     new_title = []
 
     req = requests.get(url, headers=header)
@@ -34,7 +34,8 @@ while true:
     for modified_date in modified_dates:
         modified_date_list.append(modified_date.text.split()[7])
 
-    if saved_title_list != title_list:
-        for check not in saved_title_list:
-            new_title.append(check)
+    if saved_title_list != title_list:  #기존에 저장된 데이터와 비교
+        for check in title_list:
+            if check not in saved_title_list:
+                new_title.append(check)
         saved_title_list = title_list
