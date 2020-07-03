@@ -38,4 +38,4 @@ while True:
         for check in title_list:
             if check not in saved_title_list:
                 new_title.append(check)
-        saved_title_list = title_list
+        saved_title_list = title_list[:]
