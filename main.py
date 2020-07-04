@@ -30,13 +30,12 @@ for i in range(5):      #추출된 제목 리스트에서 5개만 tit리스트�
     tit.append(title_list[i])
     tit_new.append(title_list[i])
     
-for tit_modi in tit_modis: 
+for tit_modi in tit_modis:
     tit_modi_list.append(tit_modi.text.split()[7]) #수정된 날짜
     tit_re_list.append(tit_modi.text.split()[4]) #등록된 날짜
 
 tit_new = tit[:]    #저장용 제목 리스트를 추출된 제목 리스트로 초기화 합니다. =로 단순 대입하면 주소값을 복제 하기에 tit이 바뀌면 tit_sa도 바뀜
 tit_new[3] = '가가가가가가'   #의도적으로 tit_new의 3번째 요소를 변경합니다. / 3번 째 requests.get에서 title의 목록이 변경되었다는 것을 의미
-
 for check in tit_new:
     if check not in tit:     #tit_new와 tit를 비교하여 tit의 새로운 요소를 new_title에 추가합니다.
         new_title.append(check)
@@ -45,7 +44,10 @@ for check in tit_new:
         if tit_modi_list == tit_re_list:    #수정된 날짜가 등록된 날짜와 같은 경우
             break
         else:    #수정된 날짜가 등록된 날짜와 다른 경우
-            new_title.append(check)
+            for check in tit_modi_list:
+                if check == str(datetime.date.today()):    #수정된 날짜가 오늘인 경우
+                    new_title.append(check)
             tit[:]
     
-print(new_title)
+print("신규 게시글: ", new_title)
+#print("https://www.kw.ac.kr" + link_list[i])
