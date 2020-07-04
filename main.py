@@ -46,5 +46,6 @@ for check in tit_new:
             break
         else:    #수정된 날짜가 등록된 날짜와 다른 경우
             new_title.append(check)
+            tit[:]
     
 print(new_title)
