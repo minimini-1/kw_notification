@@ -10,6 +10,7 @@ soup = BeautifulSoup(html, "html.parser")
 
 title_list = []
 link_list = []
+
 tit = []
 new_title = []    #새 제목만 가져오는 리스트
 tit_new = []
