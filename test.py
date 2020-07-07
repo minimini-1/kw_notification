@@ -18,6 +18,8 @@ for c in range(3):      #테스트를 위해 3번 반복
     new_title = []
     new_index = []
     new_link = []
+    title_list = []
+    link_list = []
 
     req = requests.get(url, headers=header)
     html = req.text
@@ -36,12 +38,14 @@ for c in range(3):      #테스트를 위해 3번 반복
         modified_date_list.append(date.text.split()[7])
     if c == 1:  #의도적으로 제목리스트를 변경
         title_list[1] = "가가가가가가"
+    if c == 2:  #c==1에서 바꾼걸 원래대로 돌림
+        saved_title_list[1] = title_list[1]
     if saved_title_list != title_list:  #기존에 저장된 데이터와 비교
         for check in title_list:
             if check not in saved_title_list:
                 new_index.append(title_list.index(check))
         for i in range(len(register_date_list)):
-            if register_date_list[i] != modified_date_list[i]: #and modified_date_list[i] == datetime.date.today():  # 수정된 날이 다르고 현재 날짜와 다름
+            if register_date_list[i] != modified_date_list[i] and modified_date_list[i] == str(datetime.date.today()):  # 수정된 날이 다르고 현재 날짜와 다름
                 new_index.append(modified_date_list.index(modified_date_list[i]))
         saved_title_list = title_list[:]
     for index in new_index: #index를 기반으로 새로운 제목과 링크를 저장
