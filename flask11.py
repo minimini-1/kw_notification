@@ -34,7 +34,7 @@ def res():
         link_list.append(link)
         
     for i in range(10):
-        title_lists.append(title_list[i].replace("신규게시글", "").replace("Attachment",""))
+        title_lists.append(title_list[i].replace("신규게시글", "").replace("Attachment", ""))
         link_lists.append("https://www.kw.ac.kr" + link_list[i])
         i = i+1
     return ('\n'.join(title_lists))
@@ -45,7 +45,7 @@ def Message():
     content = content['userRequest']
     content = content['utterance']
 
-    if content == u"안녕":
+    if res != []:
         dataSend = {
             "version": "2.0",
             "template": {
